@@ -6,13 +6,12 @@ var im = gm.subClass({ imageMagick: true });
 function Thumbnailer() {}
 
 
-Thumbnailer.prototype.createThumbnail = function(giffer, callback) {
-  var src = options.src,
-    dest = options.dest,
-    inputDir = options.inputDir,
-    outputDir = options.outputDir,
-    width = options.width,
-    height = options.height;
+Thumbnailer.prototype.createThumbnail = function(giffer, opts, callback) {
+  var src = opts.img,
+    inputDir = giffer.outDir,
+    outputDir = giffer.thumbDir,
+    width = giffer.width,
+    height = giffer.height;
 
   var readStream = fs.createReadStream(inputDir + '/' + src);
   im(readStream, src + '[0]')
