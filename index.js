@@ -3,6 +3,9 @@ var fs = require('fs');
 var gm = require('gm');
 var im = gm.subClass({ imageMagick: true });
 
+function Thumbnailer() {}
+
+
 Thumbnailer.prototype.createThumbnail = function(giffer, callback) {
   var src = options.src,
     dest = options.dest,
@@ -27,6 +30,4 @@ Thumbnailer.prototype.createThumbnail = function(giffer, callback) {
     });
 };
 
-var instance = new Thumbnailer();
-
-module.exports = instance;
+module.exports = Thumbnailer;
