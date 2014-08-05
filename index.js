@@ -2,25 +2,8 @@
 var fs = require('fs');
 var gm = require('gm');
 var im = gm.subClass({ imageMagick: true });
-var thumbnailer = {};
 
-module.exports = function(giffer, opt) {
-  this.giffer = giffer;
-  this.outputDir = opt.path;
-  this.width = opt.width;
-  this.height = opt.height;
-
-
-  this.createThumbnail = function() {
-
-  }
-};
-
-giffer.on('gif', function(url) {
-  this.createThumbnail();
-});
-
-thumbnailer.createThumbnail = function(options, callback) {
+Thumbnailer.prototype.createThumbnail = function(giffer, callback) {
   var src = options.src,
     dest = options.dest,
     inputDir = options.inputDir,
@@ -43,3 +26,7 @@ thumbnailer.createThumbnail = function(options, callback) {
       });
     });
 };
+
+var instance = new Thumbnailer();
+
+module.exports = instance;
