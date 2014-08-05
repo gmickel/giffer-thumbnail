@@ -9,9 +9,9 @@ function Thumbnailer() {}
 Thumbnailer.prototype.createThumbnail = function(giffer, opts, callback) {
   var img = opts.img,
     inputDir = giffer.outDir,
-    outputDir = giffer.thumbDir,
-    width = giffer.width,
-    height = giffer.height;
+    outputDir = giffer.thumbnailDir,
+    width = giffer.thumbnailWidth,
+    height = giffer.thumbnailHeight;
 
   var readStream = fs.createReadStream(inputDir + '/' + img);
   im(readStream, img + '[0]')
