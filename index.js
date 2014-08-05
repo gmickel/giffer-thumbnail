@@ -30,4 +30,5 @@ Thumbnailer.prototype.createThumbnail = function(giffer, callback) {
     });
 };
 
-module.exports = Thumbnailer;
+var instance = new Thumbnailer();
+module.exports = instance;
