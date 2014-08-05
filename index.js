@@ -26,6 +26,9 @@ Thumbnailer.prototype.createThumbnail = function(giffer, opts, callback) {
       writeStream.on('error', function(err) {
         return callback(err);
       });
+      writeStream.on('finish', function() {
+        return callback();
+      });
     });
 };
 
