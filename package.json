@@ -1,0 +1,19 @@
+{
+  "name": "giffer-thumbnail",
+  "version": "0.0.0",
+  "description": "Creates thumbnails for Giffer",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run clear-test; tap tests/test-*.js",
+    "clear-test": "rm tests/temp/test_out.gif"
+  },
+  "author": "Gordon Mickel <gordon.mickel@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "giffer": "^1.1.2",
+    "gm": "^1.16.0"
+  },
+  "devDependencies": {
+    "tap": "^0.4.12"
+  }
+}
