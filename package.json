@@ -1,6 +1,6 @@
 {
   "name": "giffer-thumbnail",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Creates thumbnails for Giffer",
   "main": "index.js",
   "scripts": {
