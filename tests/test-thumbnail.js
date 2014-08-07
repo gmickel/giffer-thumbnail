@@ -1,18 +1,35 @@
 'use strict';
 var test = require('tap').test;
-var Thumbnailer = require('../index');
+var thumbnailer = require('../index');
+var Giffer = require('giffer');
+var levelup = require('levelup');
+var TestAdapter = require('./testadapter');
+
+
+var db = levelup('/whatever', {
+  db: require('memdown')
+});
 
 test('Test creation of a thumbnail', function(t) {
-  var options = {
-    'src' : 'test_in.gif',
-    'dest' : 'test_out.gif',
-    'inputDir' : 'temp',
-    'outputDir' : 'temp',
-    'width' : 200,
-    'height' : 200
-  };
-  Thumbnailer.createThumbnail(options, function(err, image) {
-    t.equal(image, dest);
+
+  var testAdapter = new TestAdapter();
+
+  var giffer = new Giffer({
+    db: db,
+    outputDir: __dirname + '/temp',
+    adapters: [testAdapter]
   });
-  t.end();
+
+  var options = {
+    outputDir : __dirname + '/temp/thumbs',
+    width : 200,
+    height : 200
+  };
+  thumbnailer(giffer, options);
+  giffer.start();
+  giffer.on('gif', function(url) {
+    giffer.stop();
+    t.ok(url);
+    t.end();
+  });
 });

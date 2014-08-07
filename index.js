@@ -3,15 +3,12 @@ var fs = require('fs');
 var gm = require('gm');
 var im = gm.subClass({ imageMagick: true });
 
-function Thumbnailer() {}
-
-
-Thumbnailer.prototype.createThumbnail = function(giffer, opts, callback) {
+ function createThumbnail(giffer, opts, callback) {
   var img = opts.img,
     inputDir = giffer.outDir,
-    outputDir = giffer.thumbnailDir,
-    width = giffer.thumbnailWidth,
-    height = giffer.thumbnailHeight;
+    outputDir = opts.outputDir,
+    width = opts.width,
+    height = opts.height;
 
   var readStream = fs.createReadStream(inputDir + '/' + img);
   im(readStream, img + '[0]')
@@ -30,7 +27,17 @@ Thumbnailer.prototype.createThumbnail = function(giffer, opts, callback) {
         return callback();
       });
     });
-};
+}
 
-var instance = new Thumbnailer();
-module.exports = instance;
+module.exports = function(giffer, opts) {
+  giffer.pre('emitGif', function(next, filename) {
+    createThumbnail(giffer, {
+      img: filename,
+      outputDir: opts.outputDir,
+      width: opts.width,
+      height: opts.height
+    }, function() {
+      next();
+    }.bind(this));
+  });
+};

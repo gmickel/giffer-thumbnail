@@ -1,3 +1,5 @@
-node_modules/                                                                                                                        │ gordon@0x6D746873 ⮀ code/giffer-adapter-reddit ⮀ ⭠ master s ⮀
+node_modules                                                                                                                        │ gordon@0x6D746873 ⮀ code/giffer-adapter-reddit ⮀ ⭠ master s ⮀
 .idea                                                                                                                                │ ❯ npm publish ./                                                                                                            [1:42:44 PM]
 config.js
+tests/temp/*.gif
+tests/temp/thumbs/*.gif
