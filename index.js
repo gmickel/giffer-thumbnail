@@ -8,11 +8,12 @@ var im = gm.subClass({ imageMagick: true });
     inputDir = giffer.outDir,
     outputDir = opts.outputDir,
     width = opts.width,
-    height = opts.height;
+    height = opts.height,
+    resizeOpts = opts.resizeOpts;
 
   var readStream = fs.createReadStream(inputDir + '/' + img);
   im(readStream, img + '[0]')
-    .resize(width, height)
+    .resize(width, height, resizeOpts)
     .noProfile()
     .stream(function (err, stdout, stderr) {
       if (err) {
@@ -35,7 +36,8 @@ module.exports = function(giffer, opts) {
       img: filename,
       outputDir: opts.outputDir,
       width: opts.width,
-      height: opts.height
+      height: opts.height,
+      resizeOpts: opts.resizeOpts
     }, function() {
       next();
     }.bind(this));

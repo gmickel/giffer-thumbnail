@@ -23,7 +23,8 @@ test('Test creation of a thumbnail', function(t) {
   var options = {
     outputDir : __dirname + '/temp/thumbs',
     width : 200,
-    height : 200
+    height : 200,
+    resizeOpts: '>'
   };
   thumbnailer(giffer, options);
   giffer.start();
