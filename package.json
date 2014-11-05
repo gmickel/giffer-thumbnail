@@ -10,12 +10,12 @@
   "author": "Gordon Mickel <gordon.mickel@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "giffer": "^1.1.2",
     "gm": "^1.16.0"
   },
   "devDependencies": {
     "levelup": "^0.18.6",
     "memdown": "^0.10.2",
-    "tap": "^0.4.12"
+    "tap": "^0.4.12",
+    "giffer": "^2.0.0"
   }
 }
