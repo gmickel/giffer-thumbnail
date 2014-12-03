@@ -2,3 +2,4 @@ config.js
 tests/temp/*.gif
 tests/temp/thumbs/*.gif
 node_modules/
+npm-debug.log
