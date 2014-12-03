@@ -10,6 +10,7 @@
   "author": "Gordon Mickel <gordon.mickel@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "concat-stream": "^1.4.7",
     "gm": "^1.16.0"
   },
   "devDependencies": {

@@ -6,20 +6,17 @@ var levelup = require('levelup');
 var TestAdapter = require('./testadapter');
 
 
-var db = levelup('/whatever', {
-  db: require('memdown')
-});
+var testAdapter = new TestAdapter();
 
 test('Test creation of a thumbnail', function(t) {
-
-  var testAdapter = new TestAdapter();
-
+  var db = levelup('/whatever', {
+    db: require('memdown')
+  });
   var giffer = new Giffer({
     db: db,
     outputDir: __dirname + '/temp',
     adapters: [testAdapter]
   });
-
   var options = {
     outputDir : __dirname + '/temp/thumbs',
     width : 200,
@@ -34,3 +31,29 @@ test('Test creation of a thumbnail', function(t) {
     t.end();
   });
 });
+
+test('Test base64 encoding of a thumbnail', function(t) {
+  var db = levelup('/whatever2', {
+    db: require('memdown')
+  });
+  var giffer = new Giffer({
+    db: db,
+    outputDir: __dirname + '/temp',
+    adapters: [testAdapter]
+  });
+  var options = {
+    outputDir : __dirname + '/temp/thumbs',
+    width : 200,
+    height : 200,
+    resizeOpts: '>',
+    base64: true
+  };
+  thumbnailer(giffer, options);
+  giffer.start();
+  giffer.on('gif', function(url, metadata) {
+    giffer.stop();
+    t.ok(url);
+    t.ok(options.base64);
+    t.end();
+  });
+})
