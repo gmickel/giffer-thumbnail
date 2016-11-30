@@ -4,9 +4,8 @@
   "description": "Creates thumbnails for Giffer",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm run clear-test",
-    "test": "npm run clear-test; tap tests/test-*.js",
-    "clear-test": "rm tests/temp/test_out.gif",
+    "test": "tap tests/test-*.js",
+    "clear-test": "rm tests/temp/test_out.gif >> /dev/null 2>&1",
     "lint": "eslint -c ./.eslintrc . tests --ext .js && jscs . tests",
     "package:check": "./node_modules/.bin/ncu",
     "package:upgrade": "./node_modules/.bin/ncu -u"
